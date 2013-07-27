@@ -1,0 +1,7 @@
+13.7
+---
+
+- Initial version
+- Supports uploading files {essence, longitudinal}, persisting
+  documents to MongoDB
+- Supports tranfering persisted documents to Distribute and via PHIN-MS

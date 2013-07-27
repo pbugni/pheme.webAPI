@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:tal="http://xml.zope.org/namespaces/tal">
+<head>
+  <title>PHEME Archive</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+  <link rel="shortcut icon" href="${request.static_url('pheme.webAPI:static/favicon.ico')}" />
+  <link rel="stylesheet" href="${request.static_url('pheme.webAPI:static/pylons.css')}" type="text/css" media="screen" charset="utf-8" />
+ <!--[if lte IE 6]>
+  <link rel="stylesheet" href="${request.static_url('pheme.webAPI:static/ie6.css')}" type="text/css" media="screen" charset="utf-8" />
+  <![endif]-->
+</head>
+<body>
+<p>
+<span class="report" tal:condition='exists:document' tal:content='document'/>
+<span tal:condition='exists:documents'>
+  <h2 tal:content="string:$report_type Files:"/>
+  <table>
+    <tr>
+      <td>Filename</td>
+      <td>Size</td>
+      <td>Upload Date</td>
+      <td>Delete</td>
+  <tr tal:repeat="doc documents">
+      <td><a tal:attributes="href string:/${report_type}/${doc.filename}"
+        tal:content="doc.filename"/> </td>
+      <td tal:content="doc.length" />
+      <td tal:content="doc.uploadDate" />
+      <td><a tal:attributes="href string:/${report_type}/${doc.id}/@@delete"
+        tal:content="string:[delete ${doc.filename}]"/></td>
+    </tr>
+  </table>
+</span>
+</p>
+</body>
+</html>
